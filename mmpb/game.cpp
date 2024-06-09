@@ -2,6 +2,9 @@
 #include<QIcon>
 #include<QPainter>
 #include<QTimer>
+#include<QPixmap>
+#include<QLabel>
+#include<QString>
 
 Game::Game(QWidget *parent) : QWidget(parent)
 {
@@ -11,7 +14,6 @@ Game::Game(QWidget *parent) : QWidget(parent)
         update();//刷新绘图事件
     });
     timer->start(1000/60);//帧率
-
 }
 
 void Game::run()
@@ -21,10 +23,8 @@ void Game::run()
 
 void Game::intiGame()
 {
-    setFixedSize(1600,1000);
+    setFixedSize(1280,720);
     setWindowTitle("Match Man Play Badminton");
-    //QIcon = ;
-    //setWindowIcon();
 }
 
 //清理游戏
@@ -49,6 +49,17 @@ void Game::paintEvent(QPaintEvent* ev)
 {
     QPainter painter(this);
     drawGame(&painter);
+    //绘制背景图片
+    QPixmap pix;
+    pix.load(":/background/C:/Users/29737/Desktop/pic.jpg");
+    painter.drawPixmap(0,0,1280,720,pix);
+
+    //绘制得分板
+    QPainter pen;
+    QFont fonthead("黑体",30,20,0);
+    pen.setFont(fonthead);
+    painter.setFont(fonthead);
+    painter.drawText(590,80,QString("%1").arg(score1) + QString(":") + QString("%2").arg(score2));
 }
 
 void Game::closeEvent(QCloseEvent* ev)

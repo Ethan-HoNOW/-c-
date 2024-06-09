@@ -23,6 +23,9 @@ protected:
     virtual void paintEvent(QPaintEvent* ev)override;
     virtual void closeEvent(QCloseEvent* ev)override;
 
+private:
+    int score1 = 0;//玩家一得分
+    int score2 = 0;//玩家二得分
 
 };
 
