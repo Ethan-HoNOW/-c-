@@ -29,4 +29,3 @@ HEADERS += \
 QT += widgets
 
 RESOURCES += \
-    res.qrc
