@@ -49,9 +49,10 @@ void Game::paintEvent(QPaintEvent* ev)
 {
     QPainter painter(this);
     drawGame(&painter);
+
     //绘制背景图片
     QPixmap pix;
-    pix.load(":/background/C:/Users/29737/Desktop/pic.jpg");
+    pix.load("pic.jpg");
     painter.drawPixmap(0,0,1280,720,pix);
 
     //绘制得分板
