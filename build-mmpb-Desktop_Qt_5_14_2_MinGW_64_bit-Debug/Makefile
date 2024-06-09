@@ -231,7 +231,6 @@ Makefile: ../mmpb/mmpb.pro ../../../../exe/QT/5.14.2/mingw73_64/mkspecs/win32-g+
 		../../../../exe/QT/5.14.2/mingw73_64/mkspecs/features/resolve_config.prf \
 		../../../../exe/QT/5.14.2/mingw73_64/mkspecs/features/exclusive_builds_post.prf \
 		../../../../exe/QT/5.14.2/mingw73_64/mkspecs/features/default_post.prf \
-		../../../../exe/QT/5.14.2/mingw73_64/mkspecs/features/win32/console.prf \
 		../../../../exe/QT/5.14.2/mingw73_64/mkspecs/features/qml_debug.prf \
 		../../../../exe/QT/5.14.2/mingw73_64/mkspecs/features/precompile_header.prf \
 		../../../../exe/QT/5.14.2/mingw73_64/mkspecs/features/warn_on.prf \
@@ -243,6 +242,7 @@ Makefile: ../mmpb/mmpb.pro ../../../../exe/QT/5.14.2/mingw73_64/mkspecs/win32-g+
 		../../../../exe/QT/5.14.2/mingw73_64/mkspecs/features/uic.prf \
 		../../../../exe/QT/5.14.2/mingw73_64/mkspecs/features/qmake_use.prf \
 		../../../../exe/QT/5.14.2/mingw73_64/mkspecs/features/file_copies.prf \
+		../../../../exe/QT/5.14.2/mingw73_64/mkspecs/features/win32/windows.prf \
 		../../../../exe/QT/5.14.2/mingw73_64/mkspecs/features/testcase_targets.prf \
 		../../../../exe/QT/5.14.2/mingw73_64/mkspecs/features/exceptions.prf \
 		../../../../exe/QT/5.14.2/mingw73_64/mkspecs/features/yacc.prf \
@@ -251,7 +251,9 @@ Makefile: ../mmpb/mmpb.pro ../../../../exe/QT/5.14.2/mingw73_64/mkspecs/win32-g+
 		../../../../exe/QT/5.14.2/mingw73_64/lib/Qt5Widgets.prl \
 		../../../../exe/QT/5.14.2/mingw73_64/lib/Qt5Gui.prl \
 		../../../../exe/QT/5.14.2/mingw73_64/lib/Qt5Core.prl \
-		../../../../exe/QT/5.14.2/mingw73_64/mkspecs/features/build_pass.prf
+		../../../../exe/QT/5.14.2/mingw73_64/lib/qtmain.prl \
+		../../../../exe/QT/5.14.2/mingw73_64/mkspecs/features/build_pass.prf \
+		../mmpb/res.qrc
 	$(QMAKE) -o Makefile ..\mmpb\mmpb.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
 ../../../../exe/QT/5.14.2/mingw73_64/mkspecs/features/spec_pre.prf:
 ../../../../exe/QT/5.14.2/mingw73_64/mkspecs/qdevice.pri:
@@ -414,7 +416,6 @@ Makefile: ../mmpb/mmpb.pro ../../../../exe/QT/5.14.2/mingw73_64/mkspecs/win32-g+
 ../../../../exe/QT/5.14.2/mingw73_64/mkspecs/features/resolve_config.prf:
 ../../../../exe/QT/5.14.2/mingw73_64/mkspecs/features/exclusive_builds_post.prf:
 ../../../../exe/QT/5.14.2/mingw73_64/mkspecs/features/default_post.prf:
-../../../../exe/QT/5.14.2/mingw73_64/mkspecs/features/win32/console.prf:
 ../../../../exe/QT/5.14.2/mingw73_64/mkspecs/features/qml_debug.prf:
 ../../../../exe/QT/5.14.2/mingw73_64/mkspecs/features/precompile_header.prf:
 ../../../../exe/QT/5.14.2/mingw73_64/mkspecs/features/warn_on.prf:
@@ -426,6 +427,7 @@ Makefile: ../mmpb/mmpb.pro ../../../../exe/QT/5.14.2/mingw73_64/mkspecs/win32-g+
 ../../../../exe/QT/5.14.2/mingw73_64/mkspecs/features/uic.prf:
 ../../../../exe/QT/5.14.2/mingw73_64/mkspecs/features/qmake_use.prf:
 ../../../../exe/QT/5.14.2/mingw73_64/mkspecs/features/file_copies.prf:
+../../../../exe/QT/5.14.2/mingw73_64/mkspecs/features/win32/windows.prf:
 ../../../../exe/QT/5.14.2/mingw73_64/mkspecs/features/testcase_targets.prf:
 ../../../../exe/QT/5.14.2/mingw73_64/mkspecs/features/exceptions.prf:
 ../../../../exe/QT/5.14.2/mingw73_64/mkspecs/features/yacc.prf:
@@ -434,7 +436,9 @@ Makefile: ../mmpb/mmpb.pro ../../../../exe/QT/5.14.2/mingw73_64/mkspecs/win32-g+
 ../../../../exe/QT/5.14.2/mingw73_64/lib/Qt5Widgets.prl:
 ../../../../exe/QT/5.14.2/mingw73_64/lib/Qt5Gui.prl:
 ../../../../exe/QT/5.14.2/mingw73_64/lib/Qt5Core.prl:
+../../../../exe/QT/5.14.2/mingw73_64/lib/qtmain.prl:
 ../../../../exe/QT/5.14.2/mingw73_64/mkspecs/features/build_pass.prf:
+../mmpb/res.qrc:
 qmake: FORCE
 	@$(QMAKE) -o Makefile ..\mmpb\mmpb.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
 
