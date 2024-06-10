@@ -16,9 +16,13 @@ Player::Player(int x,int y,QString &name)
 
 void Player::update()
 {
-    position += QVector2D(1,1);
+   // position += QVector2D(1,1);
+    position += speed * velocity; // 3 * (1/-1/0)
+
 }
 void Player::draw(QPainter *painter)
 {
     painter->drawPixmap(position.toPoint(),pixmap);
 }
+
+

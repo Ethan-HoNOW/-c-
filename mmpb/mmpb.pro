@@ -14,6 +14,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         game.cpp \
         main.cpp \
+        men1.cpp \
+        men2.cpp \
         player.cpp
 
 # Default rules for deployment.
@@ -24,6 +26,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     Entity.h \
     game.h \
+    men1.h \
+    men2.h \
     player.h
 
 QT += widgets

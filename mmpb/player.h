@@ -11,6 +11,12 @@ public:
     void draw(QPainter *painter);
     QVector2D position;//坐标
     QPixmap pixmap;//图像
+
+    void moveBy(int dx,int dy);//偏移多少距离
+
+    QVector2D velocity;
+    int speed = 3; //速度
+
 };
 
 #endif // PLAYER_H
