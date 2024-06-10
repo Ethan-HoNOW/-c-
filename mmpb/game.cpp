@@ -47,7 +47,8 @@ void Game::clearGame()
 //更新游戏
 void Game::updateGame()
 {
-
+    men1->update();
+    men2->update();
 }
 
 //绘制游戏
@@ -89,41 +90,34 @@ void Game::keyPressEvent(QKeyEvent*ev)
         switch(ev->key())
         {
         case Qt::Key_Up:
-            men1->velocity.setY(-1);//加速
-            //men1->moveBy(0,-1);太慢
+
             break;
         case Qt::Key_Down:
-            men1->velocity.setY(1);
+
 
             break;
         case Qt::Key_Left:
-            men1->velocity.setX(-1);
+            men2->velocity.setX(-2);
 
             break;
         case Qt::Key_Right:
-            men1->velocity.setX(1);
-
-            break;
-        }
-    }
-    else
-    {
-        switch(ev->key())
-        {
-        case Qt::Key_Q:
-            men2->velocity.setY(-1);
+            men2->velocity.setX(2);
 
             break;
         case Qt::Key_W:
-            men2->velocity.setY(1);
 
-            break;
-        case Qt::Key_E:
-            men2->velocity.setX(-1);
 
             break;
         case Qt::Key_S:
-            men2->velocity.setX(1);
+
+
+            break;
+        case Qt::Key_A:
+            men1->velocity.setX(-2);
+
+            break;
+        case Qt::Key_D:
+            men1->velocity.setX(2);
 
             break;
         }
@@ -133,49 +127,40 @@ void Game::keyPressEvent(QKeyEvent*ev)
 void Game::keyReleaseEvent(QKeyEvent*ev)
 {
 
-    if(isPlayerOneActive)
-    {
         switch(ev->key())
         {
         case Qt::Key_Up:
-            men1->velocity.setY(0);//加速
-            //men1->moveBy(0,-1);太慢
+
+
             break;
         case Qt::Key_Down:
-            men1->velocity.setY(0);
-            //men1->moveBy(0,1);
+
+
             break;
         case Qt::Key_Left:
-            men1->velocity.setX(0);
+            men2->velocity.setX(0);
             //men1->moveBy(-1,0);
             break;
         case Qt::Key_Right:
-            men1->velocity.setX(0);
+            men2->velocity.setX(0);
             //men1->moveBy(1,0);
             break;
-        }
-    }
-    else
-    {
-        switch(ev->key())
-        {
-        case Qt::Key_Q:
-            men2->velocity.setY(0);
-            //men2->moveBy(0,-1);
-            break;
         case Qt::Key_W:
-            men2->velocity.setY(0);
-            //men2->moveBy(0,1);
-            break;
-        case Qt::Key_E:
-            men2->velocity.setX(0);
-            //men2->moveBy(-1,0);
+
+
             break;
         case Qt::Key_S:
-            men2->velocity.setX(0);
+
+
+            break;
+        case Qt::Key_A:
+            men1->velocity.setX(0);
+            //men2->moveBy(-1,0);
+            break;
+        case Qt::Key_D:
+            men1->velocity.setX(0);
             //men2->moveBy(1,0);
             break;
         }
-    }
 }
 
