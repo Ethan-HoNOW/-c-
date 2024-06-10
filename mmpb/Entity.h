@@ -15,8 +15,9 @@ public:
 
     inline int which(){return which_en;}
     inline void setEn(int n){which_en = n;}
+    bool active = true;
 private:
-    bool active = true;//flag记录实体状态
+//flag记录实体状态
     int which_en = 0;//flag区分哪一个实体 初始值为0号实体
 };
 

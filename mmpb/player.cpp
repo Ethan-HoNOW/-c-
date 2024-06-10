@@ -16,8 +16,7 @@ Player::Player(int x,int y,QString &name)
 
 void Player::update()
 {
-   // position += QVector2D(1,1);
-    position += speed * velocity; // 3 * (1/-1/0)
+    position += speed * velocity;
 
 }
 void Player::draw(QPainter *painter)

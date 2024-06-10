@@ -4,6 +4,7 @@
 #include <QWidget>
 #include<QPushButton>
 #include <QProcess>
+#include<QPainter>
 
 //开始界面
 class Start : public QWidget
@@ -16,6 +17,9 @@ public:
 
     QPushButton *btn_begin = new QPushButton("Start Game",this);
     QPushButton *btn_Ins = new QPushButton("Instruction",this);
+
+protected:
+    virtual void paintEvent(QPaintEvent* ev)override;
 
 public slots:
     void openDocxFile() {
@@ -30,3 +34,4 @@ signals:
 
 static int begin_flag = 0;
 #endif // START_H
+

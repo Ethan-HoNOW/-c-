@@ -7,14 +7,16 @@ class Ball : public Entity
 {
 public:
     Ball();
-    Ball(int x,int y,int vx,int vy,const QString &name);
+    Ball(int x,int y,double vx,double vy,double ax,double ay,const QString &name);
     void update()override;
     void draw(QPainter *painter)override;
 
     QVector2D position;//坐标
     QPixmap pixmap;//图像
-    int Vx;
-    int Vy;
+    double Vx;
+    double Vy;
+    double Ax;
+    double Ay;
 };
 
 #endif // BALL_H

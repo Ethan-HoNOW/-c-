@@ -16,6 +16,8 @@ public:
 
     QVector2D velocity;
     int speed = 3; //速度
+    double Vy = 0;
+    double Ay = 0;
 
 };
 

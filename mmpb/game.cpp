@@ -10,10 +10,12 @@
 #include"Men1.h"
 #include"Men2.h"
 #include "Player.h"
+#include "ball.h"
 
 //定义两个玩家
 Men1 *men1;
 Men2 *men2;
+Ball *ball;
 
 Game::Game(QWidget *parent) : QWidget(parent)
 {
@@ -34,8 +36,12 @@ void Game::intiGame()
 {
     setFixedSize(1280,720);
     setWindowTitle("Match Man Play Badminton");
-    men1 = new Men1(200,500,"Player.png");
-    men2 = new Men2(1000,500,"Player.png");
+    men1 = new Men1(200,525,"Player1_b.png");
+    men2 = new Men2(1000,500,"Player2.png");
+    ball = new Ball(310,620,0.0,0.0,0.0,0.0,"Ball.png");
+    ball->active = false;
+    //    la->setText("yes");
+    //    la->setGeometry(0, 0, 1280, 720);
 }
 
 //清理游戏
@@ -49,6 +55,12 @@ void Game::updateGame()
 {
     men1->update();
     men2->update();
+    ball->update();
+    if(ball->active == false)
+    {
+        ball->position.setX(men1->position.x() + 110);
+        ball->position.setY(men1->position.y() + 95);
+    }
 }
 
 //绘制游戏
@@ -56,6 +68,7 @@ void Game::drawGame(QPainter* painter)
 {
     men1->draw(painter);
     men2->draw(painter);
+    ball->draw(painter);
 }
 
 void Game::paintEvent(QPaintEvent* ev)
@@ -90,26 +103,28 @@ void Game::keyPressEvent(QKeyEvent*ev)
         switch(ev->key())
         {
         case Qt::Key_Up:
-
+                men2->Vy = -10;
             break;
         case Qt::Key_Down:
-
 
             break;
         case Qt::Key_Left:
             men2->velocity.setX(-2);
-
             break;
         case Qt::Key_Right:
             men2->velocity.setX(2);
 
             break;
         case Qt::Key_W:
-
-
+                men1->Vy = -10;
             break;
         case Qt::Key_S:
-
+            if(ball->active == false)
+            {
+                ball->active = true;
+                ball->Vx = 10;
+                ball->Vy =-16;
+            }
 
             break;
         case Qt::Key_A:
@@ -117,6 +132,7 @@ void Game::keyPressEvent(QKeyEvent*ev)
 
             break;
         case Qt::Key_D:
+
             men1->velocity.setX(2);
 
             break;
@@ -146,7 +162,8 @@ void Game::keyReleaseEvent(QKeyEvent*ev)
             //men1->moveBy(1,0);
             break;
         case Qt::Key_W:
-
+            men1->velocity.setY(0);
+//            men1->gameloop();
 
             break;
         case Qt::Key_S:

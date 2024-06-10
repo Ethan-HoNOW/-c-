@@ -41,6 +41,18 @@ void Start::run()
     //游戏说明
     connect(btn_Ins,&QPushButton::clicked,this, [=](){
         this->openDocxFile();
-        qDebug() << "docxxxxx" ;
+        qDebug() << "docxxxxx";
   });
 }
+
+void Start::paintEvent(QPaintEvent* ev)
+{
+    QPainter painter(this);
+
+    //绘制背景图片
+    QPixmap pix;
+    pix.load("start.png");
+    painter.drawPixmap(0,0,1280,720,pix);
+}
+
+
