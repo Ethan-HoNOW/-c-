@@ -2,6 +2,8 @@
 #define GAME_H
 #include <QKeyEvent>
 #include <QWidget>
+#include<QLabel>
+#include<QMouseEvent>
 
 class Game : public QWidget
 {
@@ -26,6 +28,8 @@ public:
     //哪个玩家在活动 默认玩家一处于活动状态
     bool isPlayerOneActive = true;
 
+    QLabel *la = new QLabel(this);
+    void mouseMoveEvent(QMouseEvent *e);
 
 protected:
     virtual void paintEvent(QPaintEvent* ev)override;

@@ -40,8 +40,8 @@ void Game::intiGame()
     men2 = new Men2(1000,500,"Player2.png");
     ball = new Ball(310,620,0.0,0.0,0.0,0.0,"Ball.png");
     ball->active = false;
-    //    la->setText("yes");
-    //    la->setGeometry(0, 0, 1280, 720);
+        la->setText("yes");
+        la->setGeometry(0, 0, 1280, 720);
 }
 
 //清理游戏
@@ -98,15 +98,18 @@ void Game::closeEvent(QCloseEvent* ev)
 
 void Game::keyPressEvent(QKeyEvent*ev)
 {
+    bool b = 0;
     if(isPlayerOneActive)
     {
         switch(ev->key())
         {
         case Qt::Key_Up:
+            if(men2->position.y() == 500)
                 men2->Vy = -10;
             break;
         case Qt::Key_Down:
-
+            ball->kik2(men2->position.x()+50,men2->position.y()-10);
+            b = 1;
             break;
         case Qt::Key_Left:
             men2->velocity.setX(-2);
@@ -116,12 +119,12 @@ void Game::keyPressEvent(QKeyEvent*ev)
 
             break;
         case Qt::Key_W:
+            if(men1->position.y() == 525)
                 men1->Vy = -10;
             break;
         case Qt::Key_S:
             if(ball->active == false)
             {
-                ball->active = true;
                 ball->Vx = 10;
                 ball->Vy =-16;
             }
@@ -181,3 +184,7 @@ void Game::keyReleaseEvent(QKeyEvent*ev)
         }
 }
 
+void Game::mouseMoveEvent(QMouseEvent *e)
+{
+    la->setText("("+QString::number(e->x())+","+QString::number(e->y())+")");
+}

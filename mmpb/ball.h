@@ -17,6 +17,8 @@ public:
     double Vy;
     double Ax;
     double Ay;
+    void kik1(double px,double py);
+    void kik2(double px,double py);
 };
 
 #endif // BALL_H

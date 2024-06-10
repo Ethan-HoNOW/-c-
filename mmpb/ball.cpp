@@ -1,7 +1,8 @@
 #include "ball.h"
 #include"Entity.h"
 #include<QVector2D>
-#include "men1.h"
+#include <math.h>
+
 Ball::Ball()
 {
 
@@ -30,7 +31,6 @@ void Ball::update()
     if(Vx < 0 ){Ax = 0.04;}
     if(Vy < 0 ){Ay = 0.4;}
 
-
     if((position.x() <= 130 && position.y() <= 640)|| (position.x() >= 1150 && position.y() <= 640))
     {
         //撞墙了
@@ -48,4 +48,31 @@ void Ball::update()
 void Ball::draw(QPainter *painter)
 {
     painter->drawPixmap(position.toPoint(),pixmap);
+}
+
+void Ball::kik1(double px, double py)
+{
+    double d = pow(pow(position.x() - px,2)+pow(position.y() - py,2),1/2);//距离
+    double V = pow(pow(Vx,2)+pow(Vy,2),1/2);//合速度
+    double dx = (position.x() - px) / d;
+    double dy = (position.y() - py) / d;
+    if(d < 100 && position.x() + 20 > px)
+    {
+        Vx = dx*V/6;
+        Vy = dy*V/6;
+    }
+
+}
+
+void Ball::kik2(double px, double py)
+{
+    double d = pow(pow(position.x() - px,2)+pow(position.y() - py,2),1/2);//距离
+    double V = pow(pow(Vx,2)+pow(Vy,2),1/2);//合速度
+    double dx = (position.x() - px) / d;
+    double dy = (position.y() - py) / d;
+    if(d < 100 && position.x() - 20 < px)
+    {
+        Vx = dx*V/6;
+        Vy = dy*V/6;
+    }
 }
