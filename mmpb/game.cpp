@@ -34,8 +34,8 @@ void Game::intiGame()
 {
     setFixedSize(1280,720);
     setWindowTitle("Match Man Play Badminton");
-    men1 = new Men1(20,20,"Player.png");
-    men2 = new Men2(20,20,"Player.png");
+    men1 = new Men1(200,500,"Player.png");
+    men2 = new Men2(1000,500,"Player.png");
 }
 
 //清理游戏
@@ -53,13 +53,14 @@ void Game::updateGame()
 //绘制游戏
 void Game::drawGame(QPainter* painter)
 {
-
+    men1->draw(painter);
+    men2->draw(painter);
 }
 
 void Game::paintEvent(QPaintEvent* ev)
 {
     QPainter painter(this);
-    drawGame(&painter);
+
 
     //绘制背景图片
     QPixmap pix;
@@ -72,6 +73,8 @@ void Game::paintEvent(QPaintEvent* ev)
     pen.setFont(fonthead);
     painter.setFont(fonthead);
     painter.drawText(590,80,QString("%1").arg(score1) + QString(":") + QString("%2").arg(score2));
+
+    drawGame(&painter);
 }
 
 void Game::closeEvent(QCloseEvent* ev)
