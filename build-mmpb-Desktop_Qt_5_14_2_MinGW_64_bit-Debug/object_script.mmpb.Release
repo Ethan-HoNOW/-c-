@@ -1,0 +1,11 @@
+release/game.o
+release/main.o
+release/men1.o
+release/men2.o
+release/player.o
+release/start.o
+release/ball.o
+release/end.o
+release/moc_game.o
+release/moc_start.o
+release/moc_end.o

@@ -20,7 +20,10 @@ public:
     void updateGame();
     //绘制游戏
     void drawGame(QPainter* painter);
-
+    bool isWin();
+    int score1 = 0;//玩家一得分
+    int score2 = 0;//玩家二得分
+    bool active = true;
     //根据键盘输入操纵玩家状态
     void keyPressEvent(QKeyEvent*ev)override;
     //使玩家不会一直不停移动
@@ -36,8 +39,7 @@ protected:
     virtual void closeEvent(QCloseEvent* ev)override;
 
 private:
-    int score1 = 0;//玩家一得分
-    int score2 = 0;//玩家二得分
+
 
 };
 

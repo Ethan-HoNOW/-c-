@@ -6,7 +6,7 @@
 #include<QLabel>
 #include<QString>
 #include<QKeyEvent>
-
+#include "end.h"
 #include"Men1.h"
 #include"Men2.h"
 #include "Player.h"
@@ -16,6 +16,7 @@
 Men1 *men1;
 Men2 *men2;
 Ball *ball;
+End *ed;
 
 Game::Game(QWidget *parent) : QWidget(parent)
 {
@@ -53,16 +54,49 @@ void Game::clearGame()
 //更新游戏
 void Game::updateGame()
 {
-    men1->update();
-    men2->update();
-    ball->update();
-    if(ball->active == false)
+    if(active == true && (score1 == 100 || score2 == 100))
     {
-        ball->position.setX(men1->position.x() + 110);
-        ball->position.setY(men1->position.y() + 95);
-    }
-}
+        active = false;
+        ed = new End;
+        ed->over();
 
+    }
+    if(active == true)
+    {
+        men1->update();
+        men2->update();
+        ball->update();
+        if(ball->active == false)
+        {
+            ball->position.setX(men1->position.x() + 110);
+            ball->position.setY(men1->position.y() + 95);
+        }
+
+
+        if(ball->position.y() > 640 && ball->position.y() <= 710)
+            {
+
+                //1.鍒嗘暟++ 2.閲嶅紑涓€灞€
+                if(ball->position.x() < 640)
+                {
+                    score2 += 1;
+                    this->intiGame();
+                }
+                else if(ball->position.x() > 640)
+                {
+                    score1 += 1;
+                    this->intiGame();
+                }
+            }
+    }
+
+
+}
+bool Game::isWin()
+{
+    if(score1==7||score2==7)
+        return true;
+}
 //绘制游戏
 void Game::drawGame(QPainter* painter)
 {
@@ -98,7 +132,6 @@ void Game::closeEvent(QCloseEvent* ev)
 
 void Game::keyPressEvent(QKeyEvent*ev)
 {
-    bool b = 0;
     if(isPlayerOneActive)
     {
         switch(ev->key())
@@ -109,7 +142,6 @@ void Game::keyPressEvent(QKeyEvent*ev)
             break;
         case Qt::Key_Down:
             ball->kik2(men2->position.x()+50,men2->position.y()-10);
-            b = 1;
             break;
         case Qt::Key_Left:
             men2->velocity.setX(-2);
@@ -125,10 +157,12 @@ void Game::keyPressEvent(QKeyEvent*ev)
         case Qt::Key_S:
             if(ball->active == false)
             {
+                ball -> active = true;
                 ball->Vx = 10;
                 ball->Vy =-16;
             }
-
+            if(ball->act == 1)
+                ball->kik1(men1->position.x()+100,men1->position.y()-20);
             break;
         case Qt::Key_A:
             men1->velocity.setX(-2);

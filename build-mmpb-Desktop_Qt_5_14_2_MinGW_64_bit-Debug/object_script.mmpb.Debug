@@ -1,0 +1,11 @@
+debug/game.o
+debug/main.o
+debug/men1.o
+debug/men2.o
+debug/player.o
+debug/start.o
+debug/ball.o
+debug/end.o
+debug/moc_game.o
+debug/moc_start.o
+debug/moc_end.o

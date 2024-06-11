@@ -18,7 +18,8 @@ SOURCES += \
         men2.cpp \
         player.cpp \
         start.cpp \
-        ball.cpp
+        ball.cpp \
+        end.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -32,7 +33,8 @@ HEADERS += \
     men2.h \
     player.h \
     start.h \
-    ball.h
+    ball.h \
+    end.h
 
 QT += widgets
 

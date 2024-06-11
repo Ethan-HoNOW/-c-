@@ -31,18 +31,21 @@ void Ball::update()
     if(Vx < 0 ){Ax = 0.04;}
     if(Vy < 0 ){Ay = 0.4;}
 
-    if((position.x() <= 130 && position.y() <= 640)|| (position.x() >= 1150 && position.y() <= 640))
+    if((position.x() <= 130 && position.y() <= 640) || (position.x() >= 1150 && position.y() <= 640))
     {
         //撞墙了
+        Vx = -0.7*Vx;
     }
-   else if((position.x() >= 617 && position.x() <= 656) || (position.y() >= 546 && position.y() <= 710))
+    if((position.x() >= 617 && position.x() <= 656) && (position.y() >= 546 && position.y() <= 710))
     {
-        //撞网了
+        Vx = -0.7*Vx;
+
     }
-    else if(position.y() > 640 && position.y() <= 710)
+    if(position.x() > 640)
     {
-        //落地了
+        act = 1;
     }
+
 }
 
 void Ball::draw(QPainter *painter)
@@ -56,7 +59,7 @@ void Ball::kik1(double px, double py)
     double V = pow(pow(Vx,2)+pow(Vy,2),1/2);//合速度
     double dx = (position.x() - px) / d;
     double dy = (position.y() - py) / d;
-    if(d < 100 && position.x() + 20 > px)
+    if(d < 10 && position.x() + 20 > px)
     {
         Vx = dx*V/6;
         Vy = dy*V/6;
@@ -70,7 +73,7 @@ void Ball::kik2(double px, double py)
     double V = pow(pow(Vx,2)+pow(Vy,2),1/2);//合速度
     double dx = (position.x() - px) / d;
     double dy = (position.y() - py) / d;
-    if(d < 100 && position.x() - 20 < px)
+    if(d < 10 && position.x() - 20 < px)
     {
         Vx = dx*V/6;
         Vy = dy*V/6;

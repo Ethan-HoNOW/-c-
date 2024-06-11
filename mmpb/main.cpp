@@ -1,6 +1,8 @@
 #include <QApplication>
 #include "game.h"
 #include "start.h"
+#include "end.h"
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
@@ -13,5 +15,5 @@ int main(int argc, char *argv[])
     s.run();
 
     return a.exec();
-    
+
 }
