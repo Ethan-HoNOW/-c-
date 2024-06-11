@@ -21,6 +21,6 @@ void Men1::update()
     position.setY(position.y() + Vy);
     if(position.x() > 480)
         position.setX(480);
-    if(position.x() < 40)
-        position.setX(40);
+    if(position.x() < 0)
+        position.setX(0);
 }

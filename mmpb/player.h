@@ -15,7 +15,7 @@ public:
     void moveBy(int dx,int dy);//偏移多少距离
 
     QVector2D velocity;
-    int speed = 3; //速度
+    int speed = 4; //速度
     double Vy = 0;
     double Ay = 0;
 

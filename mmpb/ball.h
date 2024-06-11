@@ -2,6 +2,7 @@
 #define BALL_H
 #include"Entity.h"
 #include<QVector2D>
+#include<QLabel>
 
 class Ball : public Entity
 {
@@ -19,6 +20,11 @@ public:
     bool act = 0;
     void kik1(double px,double py);
     void kik2(double px,double py);
+
+    double dx;
+    double dy;
+    double d;
+
 };
 
 #endif // BALL_H

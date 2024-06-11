@@ -1,4 +1,5 @@
 release/game.o
+release/light.o
 release/main.o
 release/men1.o
 release/men2.o

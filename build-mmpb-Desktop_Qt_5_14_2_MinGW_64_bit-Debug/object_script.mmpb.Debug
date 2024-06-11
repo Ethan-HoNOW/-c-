@@ -1,4 +1,5 @@
 debug/game.o
+debug/light.o
 debug/main.o
 debug/men1.o
 debug/men2.o

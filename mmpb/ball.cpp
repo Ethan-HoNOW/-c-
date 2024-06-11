@@ -34,16 +34,22 @@ void Ball::update()
     if((position.x() <= 130 && position.y() <= 640) || (position.x() >= 1150 && position.y() <= 640))
     {
         //撞墙了
-        Vx = -0.7*Vx;
+        Vx = -0.8*Vx;
     }
     if((position.x() >= 617 && position.x() <= 656) && (position.y() >= 546 && position.y() <= 710))
     {
-        Vx = -0.7*Vx;
+        Vx = -0.8*Vx;
 
     }
     if(position.x() > 640)
     {
         act = 1;
+    }
+    if(position.y() <0)
+    {
+        //撞墙了
+        position.setY(0);
+        Vy = - 0.6*Vy;
     }
 
 }
@@ -55,27 +61,27 @@ void Ball::draw(QPainter *painter)
 
 void Ball::kik1(double px, double py)
 {
-    double d = pow(pow(position.x() - px,2)+pow(position.y() - py,2),1/2);//距离
-    double V = pow(pow(Vx,2)+pow(Vy,2),1/2);//合速度
-    double dx = (position.x() - px) / d;
-    double dy = (position.y() - py) / d;
-    if(d < 10 && position.x() + 20 > px)
+    d = sqrt((position.x() - px)*(position.x() - px)+(position.y() - py)*(position.y() - py));
+    double V = sqrt(Vx*Vx+Vy*Vy);//合速度
+    dx = (position.x() - px) / d;
+    dy = (position.y() - py) / d;
+    if(d < 150 && position.x() + 20 > px)
     {
-        Vx = dx*V/6;
-        Vy = dy*V/6;
+        Vx = dx*V*1.23;
+        Vy = dy*V*1.23;
     }
 
 }
 
 void Ball::kik2(double px, double py)
 {
-    double d = pow(pow(position.x() - px,2)+pow(position.y() - py,2),1/2);//距离
-    double V = pow(pow(Vx,2)+pow(Vy,2),1/2);//合速度
-    double dx = (position.x() - px) / d;
-    double dy = (position.y() - py) / d;
-    if(d < 10 && position.x() - 20 < px)
+    d = sqrt((position.x() - px)*(position.x() - px)+(position.y() - py)*(position.y() - py));//距离
+    double V = sqrt(Vx*Vx+Vy*Vy);//合速度
+    dx = (position.x() - px) / d;
+    dy = (position.y() - py) / d;
+    if(d < 150 && position.x() - 20 < px)
     {
-        Vx = dx*V/6;
-        Vy = dy*V/6;
+        Vx = dx*V*1.23;
+        Vy = dy*V*1.23;
     }
 }

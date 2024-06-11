@@ -11,13 +11,14 @@
 #include"Men2.h"
 #include "Player.h"
 #include "ball.h"
-
+#include "light.h"
 //定义两个玩家
 Men1 *men1;
 Men2 *men2;
 Ball *ball;
 End *ed;
-
+Light *light1;
+Light *light2;
 Game::Game(QWidget *parent) : QWidget(parent)
 {
     QTimer *timer = new QTimer(this);
@@ -40,6 +41,10 @@ void Game::intiGame()
     men1 = new Men1(200,525,"Player1_b.png");
     men2 = new Men2(1000,500,"Player2.png");
     ball = new Ball(310,620,0.0,0.0,0.0,0.0,"Ball.png");
+    light1 = new Light("Light1.png");
+    light1->active = 0;
+    light2 = new Light("Light2.png");
+    light2->active = 0;
     ball->active = false;
         la->setText("yes");
         la->setGeometry(0, 0, 1280, 720);
@@ -54,7 +59,7 @@ void Game::clearGame()
 //更新游戏
 void Game::updateGame()
 {
-    if(active == true && (score1 == 100 || score2 == 100))
+    if(active == true && (score1 == 7 || score2 == 7))
     {
         active = false;
         ed = new End;
@@ -63,6 +68,10 @@ void Game::updateGame()
     }
     if(active == true)
     {
+        light1->position.setX(men1->position.x() + 45);
+        light1->position.setY(men1->position.y() -5);
+        light2->position.setX(men2->position.x() + 5);
+        light2->position.setY(men2->position.y() +5);
         men1->update();
         men2->update();
         ball->update();
@@ -103,6 +112,14 @@ void Game::drawGame(QPainter* painter)
     men1->draw(painter);
     men2->draw(painter);
     ball->draw(painter);
+    if(light1 -> active == 1)
+    {
+        light1->draw(painter);
+    }
+    if(light2 -> active == 1)
+    {
+        light2->draw(painter);
+    }
 }
 
 void Game::paintEvent(QPaintEvent* ev)
@@ -132,6 +149,7 @@ void Game::closeEvent(QCloseEvent* ev)
 
 void Game::keyPressEvent(QKeyEvent*ev)
 {
+    QPainter painter(this);
     if(isPlayerOneActive)
     {
         switch(ev->key())
@@ -141,7 +159,12 @@ void Game::keyPressEvent(QKeyEvent*ev)
                 men2->Vy = -10;
             break;
         case Qt::Key_Down:
-            ball->kik2(men2->position.x()+50,men2->position.y()-10);
+            ball->kik2(men2->position.x()+50,men2->position.y());
+            Dx->setText(QString("Dx=") + QString("%1").arg(ball->dx));
+            Dx->setGeometry(0, 0, 1000, 620);
+            d->setText(QString("d=") + QString("%1").arg(ball->d));
+            d->setGeometry(0, 0, 1000, 820);
+            light2->active = 1;
             break;
         case Qt::Key_Left:
             men2->velocity.setX(-2);
@@ -162,7 +185,10 @@ void Game::keyPressEvent(QKeyEvent*ev)
                 ball->Vy =-16;
             }
             if(ball->act == 1)
-                ball->kik1(men1->position.x()+100,men1->position.y()-20);
+            {
+                ball->kik1(men1->position.x()+100,men1->position.y()-10);
+            }
+            light1->active = 1;
             break;
         case Qt::Key_A:
             men1->velocity.setX(-2);
@@ -187,7 +213,7 @@ void Game::keyReleaseEvent(QKeyEvent*ev)
 
             break;
         case Qt::Key_Down:
-
+            light2->active = 0;
 
             break;
         case Qt::Key_Left:
@@ -204,7 +230,7 @@ void Game::keyReleaseEvent(QKeyEvent*ev)
 
             break;
         case Qt::Key_S:
-
+            light1->active = 0;
 
             break;
         case Qt::Key_A:

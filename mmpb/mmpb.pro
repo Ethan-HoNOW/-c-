@@ -13,6 +13,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         game.cpp \
+        light.cpp \
         main.cpp \
         men1.cpp \
         men2.cpp \
@@ -29,6 +30,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     Entity.h \
     game.h \
+    light.h \
     men1.h \
     men2.h \
     player.h \
