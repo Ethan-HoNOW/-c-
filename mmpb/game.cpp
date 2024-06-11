@@ -19,6 +19,10 @@ Ball *ball;
 End *ed;
 Light *light1;
 Light *light2;
+int Px1 = 200;
+int Py1 = 525;
+int Px2  = 1000;
+int Py2  = 500;
 Game::Game(QWidget *parent) : QWidget(parent)
 {
     QTimer *timer = new QTimer(this);
@@ -38,16 +42,17 @@ void Game::intiGame()
 {
     setFixedSize(1280,720);
     setWindowTitle("Match Man Play Badminton");
-    men1 = new Men1(200,525,"Player1_b.png");
-    men2 = new Men2(1000,500,"Player2.png");
+    setWindowIcon(QIcon("ico2.ico"));
+    men1 = new Men1(Px1,Py1,"Player1_b.png");
+    men2 = new Men2(Px2,Py2,"Player2.png");
     ball = new Ball(310,620,0.0,0.0,0.0,0.0,"Ball.png");
     light1 = new Light("Light1.png");
     light1->active = 0;
     light2 = new Light("Light2.png");
     light2->active = 0;
     ball->active = false;
-        la->setText("yes");
-        la->setGeometry(0, 0, 1280, 720);
+//    la->setText("yes");
+//    la->setGeometry(0, 0, 1280, 720);
 }
 
 //清理游戏
@@ -59,12 +64,18 @@ void Game::clearGame()
 //更新游戏
 void Game::updateGame()
 {
-    if(active == true && (score1 == 7 || score2 == 7))
+    if(active == true && score1 == 7)
     {
         active = false;
         ed = new End;
-        ed->over();
-
+        ed->over(score1);
+    }
+    else if(active == true && score2 == 7)
+    {
+        active = false;
+        ed = new End;
+        score2++;
+        ed->over(score2);
     }
     if(active == true)
     {
@@ -85,14 +96,23 @@ void Game::updateGame()
         if(ball->position.y() > 640 && ball->position.y() <= 710)
             {
 
-                //1.鍒嗘暟++ 2.閲嶅紑涓€灞€
+                //1.分数++ 2.restart
                 if(ball->position.x() < 640)
                 {
+                    Px1 = men1->position.x();
+                    Py1 = men1->position.y();
+                    Px2  = men2->position.x();
+                    Py2  = men2->position.y();
                     score2 += 1;
                     this->intiGame();
                 }
                 else if(ball->position.x() > 640)
                 {
+
+                    Px1 = men1->position.x();
+                    Py1 = men1->position.y();
+                    Px2  = men2->position.x();
+                    Py2  = men2->position.y();
                     score1 += 1;
                     this->intiGame();
                 }
@@ -160,10 +180,10 @@ void Game::keyPressEvent(QKeyEvent*ev)
             break;
         case Qt::Key_Down:
             ball->kik2(men2->position.x()+50,men2->position.y());
-            Dx->setText(QString("Dx=") + QString("%1").arg(ball->dx));
-            Dx->setGeometry(0, 0, 1000, 620);
-            d->setText(QString("d=") + QString("%1").arg(ball->d));
-            d->setGeometry(0, 0, 1000, 820);
+//            Dx->setText(QString("Dx=") + QString("%1").arg(ball->dx));
+//            Dx->setGeometry(0, 0, 1000, 620);
+//            d->setText(QString("d=") + QString("%1").arg(ball->d));
+//            d->setGeometry(0, 0, 1000, 820);
             light2->active = 1;
             break;
         case Qt::Key_Left:
@@ -198,6 +218,15 @@ void Game::keyPressEvent(QKeyEvent*ev)
 
             men1->velocity.setX(2);
 
+            break;
+        case Qt::Key_R:
+            score1 = score2 = 0;
+            active = true;
+            Px1 = 200;
+            Py1 = 525;
+            Px2  = 1000;
+            Py2  = 500;
+            this->intiGame();
             break;
         }
     }
@@ -244,7 +273,7 @@ void Game::keyReleaseEvent(QKeyEvent*ev)
         }
 }
 
-void Game::mouseMoveEvent(QMouseEvent *e)
-{
-    la->setText("("+QString::number(e->x())+","+QString::number(e->y())+")");
-}
+//void Game::mouseMoveEvent(QMouseEvent *e)
+//{
+//    la->setText("("+QString::number(e->x())+","+QString::number(e->y())+")");
+//}

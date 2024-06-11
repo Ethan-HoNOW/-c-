@@ -31,11 +31,11 @@ public:
     //哪个玩家在活动 默认玩家一处于活动状态
     bool isPlayerOneActive = true;
 
-    QLabel *la = new QLabel(this);
-    void mouseMoveEvent(QMouseEvent *e);
+//    QLabel *la = new QLabel(this);
+//    void mouseMoveEvent(QMouseEvent *e);
 
-    QLabel *d = new QLabel(this);
-    QLabel *Dx = new QLabel(this);
+//    QLabel *d = new QLabel(this);
+//    QLabel *Dx = new QLabel(this);
 protected:
     virtual void paintEvent(QPaintEvent* ev)override;
     virtual void closeEvent(QCloseEvent* ev)override;

@@ -12,6 +12,7 @@ Start::Start(QWidget *parent) : QWidget(parent)
 void Start::run()
 {
 //1.界面初始化
+    setWindowIcon(QIcon("ico1.ico"));
     this->show();
 
     setFixedSize(1280,720);

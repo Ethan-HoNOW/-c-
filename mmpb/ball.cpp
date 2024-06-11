@@ -27,8 +27,8 @@ void Ball::update()
     position.setY(position.y() + Vy);
     Vx += Ax;
     Vy += Ay;
-    if(Vx > 0 ){Ax = -0.04;}
-    if(Vx < 0 ){Ax = 0.04;}
+    if(Vx > 0 ){Ax = -0.05;}
+    if(Vx < 0 ){Ax = 0.05;}
     if(Vy < 0 ){Ay = 0.4;}
 
     if((position.x() <= 130 && position.y() <= 640) || (position.x() >= 1150 && position.y() <= 640))
@@ -67,8 +67,8 @@ void Ball::kik1(double px, double py)
     dy = (position.y() - py) / d;
     if(d < 150 && position.x() + 20 > px)
     {
-        Vx = dx*V*1.23;
-        Vy = dy*V*1.23;
+        Vx = dx*V*1.3;
+        Vy = dy*V*1.3;
     }
 
 }
@@ -81,7 +81,7 @@ void Ball::kik2(double px, double py)
     dy = (position.y() - py) / d;
     if(d < 150 && position.x() - 20 < px)
     {
-        Vx = dx*V*1.23;
-        Vy = dy*V*1.23;
+        Vx = dx*V*1.3;
+        Vy = dy*V*1.3;
     }
 }

@@ -10,6 +10,7 @@
 #include<QPainter>
 #include<QTimer>
 #include<QPixmap>
+#include<QKeyEvent>
 
 class End : public QWidget
 {
@@ -18,7 +19,12 @@ class End : public QWidget
 public:
     explicit End(QWidget *parent = nullptr);
 
-    void over();
+    void over(int a);
+    void draw_win1(QPainter* painter);
+    void draw_win2(QPainter* painter);
+
+
+    int flag;//判断玩家的标志
 
     //绘制游戏
     QPixmap pixmap;//图像

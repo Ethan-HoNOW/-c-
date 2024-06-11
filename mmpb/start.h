@@ -23,7 +23,7 @@ protected:
 
 public slots:
     void openDocxFile() {
-        QString filePath = "Insruction.docx"; // 替换为你的文件路径
+        QString filePath = "Instruction.docx"; // 替换为你的文件路径
         QStringList arguments;
         arguments << "winword.exe" << filePath;
         QProcess::startDetached("cmd.exe", QStringList() << "/C" << "start" << arguments);
